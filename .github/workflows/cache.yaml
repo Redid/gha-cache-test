@@ -5,10 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo 123 > test.txt
+      - run: echo "now=$(date +"%Y-%m-%d-%H-%M")" >> ${GITHUB_OUTPUT}
+        id: now
       - uses: actions/cache/save@v3
         with:
           path: test.txt
-          key: test-${{ github.sha }}-$(date +"%Y-%m-%d-%H-%M")
+          key: test-${{ github.sha }}-${{ steps.now.outputs.now }}
       - uses: actions/cache/restore@v3
         with:
           path: test2.txt
