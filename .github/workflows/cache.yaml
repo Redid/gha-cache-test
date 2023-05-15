@@ -8,7 +8,7 @@ jobs:
       - uses: actions/cache/save@v3
         with:
           path: test.txt
-          key: test-${{ github.sha }}
+          key: test-${{ github.sha }}-$(date +"%Y-%m-%d-%H-%M")
       - uses: actions/cache/restore@v3
         with:
           path: test2.txt
