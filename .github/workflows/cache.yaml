@@ -1,0 +1,16 @@
+on: workflow_dispatch
+
+jobs:
+  cache_test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 123 > test.txt
+      - uses: actions/cache/save@v3
+        with:
+          path: test.txt
+          key: test-${{ github.sha }}
+      - uses: actions/cache/restore@v3
+        with:
+          path: test2.txt
+          key: test-${{ github.sha }}
+      - run: cat test2.txt
