@@ -1,36 +1,48 @@
 on: workflow_dispatch
 
 jobs:
-  cache_test:
+  cache_v2:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "2.latest" >> test.txt
       - uses: actions/cache@v2
         with:
-          path: test2.txt
-          key: test-85a4ade610cdeca342a27293869804d347d914fe-2023-05-15-15-23
-          restore-keys: |
-            test-
+          path: test.txt
+          key: test2
+      - run: cat test.txt
+  cache_v3:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "3.latest" >> test.txt
       - uses: actions/cache@v3
         with:
-          path: test3.txt
-          key: test-85a4ade610cdeca342a27293869804d347d914fe-2023-05-15-15-23
-          restore-keys: |
-            test-
-      - uses: actions/cache@v3.2.0
-        with:
-          path: test32.txt
-          key: test-85a4ade610cdeca342a27293869804d347d914fe-2023-05-15-15-23
-          restore-keys: |
-            test-
+          path: test.txt
+          key: test3
+      - run: cat test.txt
+  cache_v30:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "3.0.0" >> test.txt
       - uses: actions/cache@v3.0.0
         with:
-          path: test30.txt
-          key: test-85a4ade610cdeca342a27293869804d347d914fe-2023-05-15-15-23
-          restore-keys: |
-            test-
+          path: test.txt
+          key: test30
+      - run: cat test.txt
+  cache_v32:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "3.2.0" >> test.txt
+      - uses: actions/cache@v3.2.0
+        with:
+          path: test.txt
+          key: test32
+      - run: cat test.txt
+  cache_v3011:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "3.0.11" >> test.txt
       - uses: actions/cache@v3.0.11
         with:
-          path: test3011.txt
-          key: test-85a4ade610cdeca342a27293869804d347d914fe-2023-05-15-15-23
-          restore-keys: |
-            test-
+          path: test.txt
+          key: test3011
+      - run: cat test.txt
