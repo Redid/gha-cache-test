@@ -4,17 +4,33 @@ jobs:
   cache_test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo 123 > test.txt
-      - run: echo "now=$(date +"%Y-%m-%d-%H-%M")" >> ${GITHUB_OUTPUT}
-        id: now
-      - uses: actions/cache/save@v3
-        with:
-          path: test.txt
-          key: test-${{ github.sha }}-${{ steps.now.outputs.now }}
-      - uses: actions/cache/restore@v3
+      - uses: actions/cache@v2
         with:
           path: test2.txt
-          key: test-${{ github.sha }}
+          key: test-85a4ade610cdeca342a27293869804d347d914fe-2023-05-15-15-23
           restore-keys: |
             test-
-      - run: cat test2.txt
+      - uses: actions/cache@v3
+        with:
+          path: test3.txt
+          key: test-85a4ade610cdeca342a27293869804d347d914fe-2023-05-15-15-23
+          restore-keys: |
+            test-
+      - uses: actions/cache@v3.2.0
+        with:
+          path: test32.txt
+          key: test-85a4ade610cdeca342a27293869804d347d914fe-2023-05-15-15-23
+          restore-keys: |
+            test-
+      - uses: actions/cache@v3.0.0
+        with:
+          path: test30.txt
+          key: test-85a4ade610cdeca342a27293869804d347d914fe-2023-05-15-15-23
+          restore-keys: |
+            test-
+      - uses: actions/cache@v3.0.11
+        with:
+          path: test3011.txt
+          key: test-85a4ade610cdeca342a27293869804d347d914fe-2023-05-15-15-23
+          restore-keys: |
+            test-
