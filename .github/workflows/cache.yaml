@@ -7,42 +7,82 @@ jobs:
       - run: echo "2.latest" >> test.txt
       - uses: actions/cache@v2
         with:
-          path: test-test.txt
+          path: test.txt
           key: test2
-      - run: cat test-test.txt
+  cache_v2_test:
+    runs-on: ubuntu-latest
+    needs: [cache_v2]
+    steps:
+      - uses: actions/cache@v2
+        with:
+          path: test.txt
+          key: test2
+      - run: cat test.txt
   cache_v3:
     runs-on: ubuntu-latest
     steps:
       - run: echo "3.latest" >> test.txt
       - uses: actions/cache@v3
         with:
-          path: test-test.txt
+          path: test.txt
           key: test3
-      - run: cat test-test.txt
+  cache_v3_test:
+    runs-on: ubuntu-latest
+    needs: [cache_v3]
+    steps:
+      - uses: actions/cache@v3
+        with:
+          path: test.txt
+          key: test3
+      - run: cat test.txt
   cache_v30:
     runs-on: ubuntu-latest
     steps:
       - run: echo "3.0.0" >> test.txt
       - uses: actions/cache@v3.0.0
         with:
-          path: test-test.txt
+          path: test.txt
           key: test30
-      - run: cat test-test.txt
+  cache_v30_test:
+    runs-on: ubuntu-latest
+    needs: [cache_v30]
+    steps:
+      - uses: actions/cache@v3.0.0
+        with:
+          path: test.txt
+          key: test30
+      - run: cat test.txt
   cache_v32:
     runs-on: ubuntu-latest
     steps:
       - run: echo "3.2.0" >> test.txt
       - uses: actions/cache@v3.2.0
         with:
-          path: test-test.txt
+          path: test.txt
           key: test32
-      - run: cat test-test.txt
+  cache_v32_test:
+    runs-on: ubuntu-latest
+    needs: [cache_v32]
+    steps:
+      - uses: actions/cache@v3.2.0
+        with:
+          path: test.txt
+          key: test32
+      - run: cat test.txt
   cache_v3011:
     runs-on: ubuntu-latest
     steps:
       - run: echo "3.0.11" >> test.txt
       - uses: actions/cache@v3.0.11
         with:
-          path: test-test.txt
+          path: test.txt
           key: test3011
-      - run: cat test-test.txt
+  cache_v3011_test:
+    runs-on: ubuntu-latest
+    needs: [cache_v3011]
+    steps:
+      - uses: actions/cache@v3.0.11
+        with:
+          path: test.txt
+          key: test3011
+      - run: cat test.txt
